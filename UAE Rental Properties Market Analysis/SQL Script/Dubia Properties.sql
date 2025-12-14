@@ -38,7 +38,6 @@ WHERE Rent <= 0 OR Area_in_sqft <= 0;
 
 
 -- GENERAL OVERVIEW
-
 -- Total number of listings in the dataset.
 SELECT COUNT(*) AS Total_Listing 
 FROM Dubia_Properties
@@ -77,7 +76,6 @@ ORDER BY Total_Number_of_Listing DESC
 
 
 --RENT ANALYSIS
-
 -- Average, minimum, and maximum rent overall.
 SELECT AVG(Rent) AS Average_Rent, MIN(Rent) AS Minimum_Rent, MAX(Rent) AS Maximum_Rent
 From Dubia_Properties
@@ -119,7 +117,6 @@ ORDER BY Rent ASC;
 
 
 -- PROPERTY FEATURES
-
 -- How rent varies with number of bedrooms.
 SELECT Bedroom, COUNT(*) AS Total_Listing,
 	ROUND( AVG(Rent),2) AS Average_Rent,
@@ -177,7 +174,6 @@ GROUP BY City, Bedroom
 ORDER BY City, Average_Rent DESC;
 
 -- TIME BASED INSIGHTS
-
 -- Number of listings posted per month.
 SELECT 
     TRIM(TO_CHAR(Posted_date::date, 'Month')) AS Month,
@@ -215,7 +211,6 @@ ORDER BY Total_Listing DESC
 
 
 -- LOCATION AND CITY INSIGHTS
-
 -- Which city has the highest average rent per sqft?
 SELECT City, COUNT(*),
 	ROUND(CAST (AVG(Rent_per_sqft)AS Decimal),2) AS Average_Rent_Per_Sqft
@@ -232,4 +227,5 @@ FROM (
 ) AS ranked
 WHERE rank <= 5
 ORDER BY City, Rent DESC;
+
 
